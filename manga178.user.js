@@ -1,6 +1,7 @@
 // ==UserScript==
 // @match        http://www.178.com/mh/*
 // @match        http://www.dmzj.com/*
+// @match        http://manhua.dmzj.com/*
 // ==/UserScript==
 
 (function(){
@@ -70,7 +71,8 @@ if(no_convert){
 
 }else{
     var inline_script_text = get_inline_script_text_by_regex(/arr_pages/);
-    var MANHUA_ROOT = 'http://imgd.dmzj.com/';
+
+    var MANHUA_ROOT = 'http://imgfast.dmzj.com/';
 
     if(!inline_script_text){
         return;

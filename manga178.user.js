@@ -5,7 +5,7 @@
 // ==/UserScript==
 
 (function() {
-    var MANHUA_ROOT = 'http://imgfast.dmzj.com/',
+    var MANHUA_ROOT = 'http://images.dmzj.com/',
         LOAD_TIME_INTERVAL = 2000,
         LOAD_HEIGHT = 1000,
         is_body_purged = false,

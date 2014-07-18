@@ -3,7 +3,7 @@
 
 ## Installation
 
-1. download manga178.user.js
+1. download [manga178.user.js](https://github.com/kaelzhang/178manga-reader/raw/master/manga178.user.js)
 2. open [chrome://extensions/](chrome://extensions/)
 3. drag the javascript file into your browser, and comfirm 'add' button.
 4. done, and enjoy it!

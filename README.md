@@ -10,3 +10,9 @@
 
 
 Visit [http://www.dmzj.com/lkxlrjk/41.shtml](http://www.dmzj.com/lkxlrjk/41.shtml)
+
+****
+
+友情支持：
+
+https://github.com/fuluchii/178whisper，你懂的

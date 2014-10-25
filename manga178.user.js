@@ -70,6 +70,18 @@
         xmlHttp.send();
     };
 
+    var MODE_NORMAL = "normal";
+    var MODE_RIGHT_LEFT = "right-left";
+    var MODE_LEFT_RIGHT = "left-right";
+    var availableModes = [MODE_NORMAL, MODE_RIGHT_LEFT, MODE_LEFT_RIGHT];
+    var modeStorageKey = "manga-reader-mode";
+    var currentMode = localStorage.getItem(modeStorageKey) || availableModes[0];
+    document.body.addEventListener("keydown",function(e){
+        if(e.which >= 49 && e.which <= 51 && e.ctrlKey){
+            localStorage.setItem(modeStorageKey, availableModes[e.which - 49] || MODE_NORMAL);
+            location.reload();
+        }
+    });
 
     var Page = (function(){
         function Page(url, page) {
@@ -86,15 +98,32 @@
             return null;
         };
 
+        function get_image_html(img, i){
+            var defaultHtml = '<img src="' + MANHUA_ROOT + img + '"/>';
+            if(i == 0){
+                return defaultHtml;
+            }
+            switch(currentMode){
+                case MODE_NORMAL:
+                    return defaultHtml;
+                case MODE_RIGHT_LEFT:
+                    return '<div style="width:50%;margin:0 auto;overflow:hidden">' + '<img style="float:right" src="' + MANHUA_ROOT + img + '"/>' + '</div>'
+                        + '<div style="width:50%;margin:0 auto;overflow:hidden">' + '<img style="float:left" src="' + MANHUA_ROOT + img + '"/>' + '</div>';
+                case MODE_LEFT_RIGHT:
+                    return '<div style="width:50%;margin:0 auto;overflow:hidden">' + '<img style="float:left" src="' + MANHUA_ROOT + img + '"/>' + '</div>'
+                        + '<div style="width:50%;margin:0 auto;overflow:hidden">' + '<img style="float:right" src="' + MANHUA_ROOT + img + '"/>' + '</div>';
+                default:
+                    return defaultHtml;
+            }
+        }
+
         function get_manga_html(list) {
            var length = list.length,
            html = list.map(function(img, i) {
-
                return '<div style="margin-bottom:3px;">'
                +        '<div style="color:#999; text-shadow:0 1px 0 #fff">PAGE: ' + (i + 1) + ' / ' + length + '</div>'
-               +        '<img src="' + MANHUA_ROOT + img + '"/>'
+               +        get_image_html(img, i)
                +    '</div>';
-
            }).join('');
 
            return '<div style="border-top:1px solid #aaa; border-bottom:1px solid #ddd; padding:10px 0;">' + html + '</div>';
